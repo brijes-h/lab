@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <body ng-app="myApp">
+        <p>Fill the given form:</p>
+
+        <form name="myForm">
+            Name:
+            <input
+                name="myInput"
+                ng-model="myInput"
+                required
+                my-directive
+            /><br /><br />
+            Age:
+            <input name="age" type="number" required /><br /><br />
+        </form>
+
+        <p>
+            The Name field must contain the character "N" to be considered as valid.
+        </p>
+
+        <h3>Validation State is:</h3>
+        <h1>{{myForm.myInput.$valid}}</h1>
+
+        <script>
+            var app = angular.module('myApp', []);
+            app.directive('myDirective', function () {
+                return {
+                    require: 'ngModel',
+                    link: function (scope, element, attr, mCtrl) {
+                        function myValidation(value) {
+                            if (value.indexOf('N') > -1) {
+                                mCtrl.$setValidity('charE', true);
+                            } else {
+                                mCtrl.$setValidity('charE', false);
+                            }
+                            return value;
+                        }
+                        mCtrl.$parsers.push(myValidation);
+                    },
+                };
+            });
+        </script>
+    </body>
+</html>

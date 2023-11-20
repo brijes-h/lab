@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Events</title>
+</head>
+<body>
+
+	<button id="clickButton">Click Me</button>
+	<input type="text" id="textInput">
+	<div id="eventLog"></div>
+
+	<script>
+		// Mouse Events
+		const clickButton = document.getElementById('clickButton');
+		clickButton.addEventListener('click', function() {
+		  logEvent('Click event');
+		});
+
+		clickButton.addEventListener('mouseover', function() {
+		  logEvent('Mouseover event');
+		});
+
+		clickButton.addEventListener('mouseout', function() {
+		  logEvent('Mouseout event');
+		});
+
+		// Keyboard Events
+		const textInput = document.getElementById('textInput');
+		textInput.addEventListener('keydown', function(event) {
+		  logEvent(`Keydown event - Key: ${event.key}`);
+		});
+
+		textInput.addEventListener('keyup', function(event) {
+		  logEvent(`Keyup event - Key: ${event.key}`);
+		});
+
+		textInput.addEventListener('keypress', function(event) {
+		  logEvent(`Keypress event - Key: ${event.key}`);
+		});
+
+		// Utility function to log events
+		function logEvent(eventText) {
+		  const eventLog = document.getElementById('eventLog');
+		  const newEvent = document.createElement('p');
+		  newEvent.textContent = eventText;
+		  eventLog.appendChild(newEvent);
+		}
+	</script>
+
+</body>
+</html>

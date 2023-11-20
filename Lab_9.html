@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .name {
+            font-size: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <form id="registrationForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword"><br><br>
+
+        <input type="button" id="submitBtn" value="Submit">
+    </form>
+
+    <div id="errorMessages"></div>
+
+    <script>
+        $(document).ready(function () {
+            $("#submitBtn").click(function () {
+                validateForm();
+            });
+
+            function validateForm() {
+                var name = $("#name").val();
+                var email = $("#email").val();
+                var password = $("#password").val();
+                var confirmPassword = $("#confirmPassword").val();
+                var errorMessages = "";
+
+                if (name.trim() === "") {
+                    errorMessages += "Name is required.<br>";
+                }
+
+                if (email.trim() === "") {
+                    errorMessages += "Email is required.<br>";
+                } else if (!isValidEmail(email)) {
+                    errorMessages += "Invalid email address.<br>";
+                }
+
+                if (password.trim() === "") {
+                    errorMessages += "Password is required.<br>";
+                }
+
+                if (confirmPassword.trim() === "") {
+                    errorMessages += "Confirm Password is required.<br>";
+                } else if (password !== confirmPassword) {
+                    errorMessages += "Passwords do not match.<br>";
+                }
+
+                if (errorMessages !== "") {
+                    $("#errorMessages").html(errorMessages);
+                } else {
+                    alert("Registration Successful");
+                }
+            }
+
+            function isValidEmail(email) {
+                var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                return emailPattern.test(email);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>AngularJs Form Validation</title>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+        <script type="text/javascript">
+            var app = angular.module('formApp', []);
+
+            app.controller('formCtrl', function ($scope) {
+                $scope.sendForm = function () {
+                    $scope.msg = 'Form Validated Successfully!';
+                };
+            });
+        </script>
+    </head>
+
+    <body>
+        <div ng-app="formApp" ng-controller="formCtrl">
+            <form name="personForm" ng-submit="sendForm()">
+                Name: <input type="text" name="name" ng-model="person.name" required />
+
+                <span ng-show="personForm.name.$error.required"> Required! </span>
+                <br /><br />
+
+                Age: <input type="number" name="age" ng-model="person.age" required />
+
+                <span ng-show="personForm.age.$error.required"> Required! </span>
+                <br /><br />
+
+                <button type="submit">Submit</button><br /><br />
+
+                <span>{{msg}}</span>
+            </form>
+        </div>
+    </body>
+</html>

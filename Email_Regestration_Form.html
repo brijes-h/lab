@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email Registration Form</title>
+</head>
+<body>
+    <h1>Email Registration Form</h1>
+
+    <form method="post" action="/cgi-bin/formmail">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" size="30" maxlength="100" required>
+        <br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" size="30" required>
+        <br><br>
+
+        <label>Gender:</label>
+        <input type="radio" id="male" name="gender" value="male" checked>
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label>
+        <br><br>
+
+        <label for="country">Country:</label>
+        <select id="country" name="country">
+            <option value="IN">India</option>
+            <option value="CN">China</option>
+            <option value="USA">United States</option>
+            <option value="UK">United Kingdom</option>
+            <option value="CA">Canada</option>
+            <option value="AU">Australia</option>
+            <option value="DE">Germany</option>
+            <option value="FR">France</option>
+            <option value="JP">Japan</option>
+            <option value="BR">Brazil</option>
+            <option value="KR">South Korea</option>
+        </select>
+        <br><br>
+
+        <input type="checkbox" id="agree" name="agree" required>
+        <label for="agree">I agree to the terms and conditions</label>
+        <br><br>
+
+        <label for="comments">Comments:</label>
+        <textarea id="comments" name="comments" rows="4" cols="36"></textarea>
+        <br><br>
+
+        <input type = "submit" value = "Submit Your Entries" />
+	<input type = "reset" value = "Clear Your Entries" />
+
+    </form>
+</body>
+</html>
